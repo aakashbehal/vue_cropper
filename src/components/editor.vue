@@ -5,7 +5,7 @@
     </div>
     <div class="toolbar" v-if="cropper" @click="click">
       <!-- <button class="toolbar__button" data-action="move" title="Move (M)"><span class="fa fa-arrows"></span></button> -->
-      <button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>
+      <!--<button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>-->
       <!-- <button class="toolbar__button" data-action="zoom-out" title="Zoom Out (O)"><span class="fa fa-search-minus"></span></button> -->
       <button class="toolbar__button" data-action="rotate-left" title="Rotate Left (L)"><span class="fa fa-rotate-left"></span></button>
       <button class="toolbar__button" data-action="crop-save" title="OK (Enter)"><span class="fa fa-check"></span></button>
@@ -15,7 +15,7 @@
       <!-- <button class="toolbar__button" data-action="flip-vertical" title="Flip Vertical (V)"><span class="fa fa-arrows-v"></span></button> -->
     </div>
     <div class="toolbar_remove" v-if="!cropper" @click="click">
-    <button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>
+    <!--<button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>-->
       <button type="button" class="toolbar__button" data-action="remove" title="Delete (Delete)" v-show="loader.loaded && !editor.cropping"><span class="fa fa-trash"></span></button>
     </div>
   </div>
@@ -394,10 +394,10 @@
   }
   @media screen and (max-width: 480px){
     .toolbar{
-      left: 30%
+      left: 40%
     }
     .toolbar_remove{
-      left:45%
+      left:55%
     }
   }
 </style>
