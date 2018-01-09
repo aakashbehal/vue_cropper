@@ -42,9 +42,8 @@
       },
 
       change({ target }) {
-        var url = new URL(window.location.href);
-        var c = url.searchParams.get("role");
-        console.log(c)
+        // const url = new URL(window.location.href);
+        // const c = url.searchParams.get('role');
 
         this.read(target.files).then(() => {
           target.value = '';

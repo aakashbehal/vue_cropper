@@ -55,10 +55,8 @@
 
     methods: {
       click({ target }) {
-
         const cropper = this.cropper;
         const action = target.dataset.action || target.parentNode.dataset.action;
-        console.log(action)
         switch (action) {
           case 'move':
           case 'crop':
@@ -71,26 +69,21 @@
           // case 'zoom-out':
           //   cropper.zoom(-0.1);
           //   break;
-
           case 'rotate-left':
             cropper.rotate(-90);
             break;
-
           case 'rotate-right':
             cropper.rotate(90);
             break;
-          
           case 'remove':
-            this.reset()
+            this.reset();
             break;
-
           case 'crop-save':
             this.crop();
             break;
           case 'restore':
-            this.restore()
+            this.restore();
             break;
-
           // case 'flip-horizontal':
           //   cropper.scaleX(-cropper.getData().scaleX || -1);
           //   break;
@@ -225,8 +218,8 @@
         this.cropper = new Cropper(this.$refs.image, {
           autoCrop: true,
           dragMode: false,
-          viewMode:1,
-          autoCropArea:0.3,
+          viewMode: 1,
+          autoCropArea: 0.3,
           background: false,
           ready: () => {
             if (this.data) {
