@@ -221,6 +221,14 @@
           viewMode: 1,
           autoCropArea: 0.3,
           background: false,
+          imageSmoothingEnabled: false,
+          imageSmoothingQuality: 'high',
+          width: 160,
+          height: 90,
+          minWidth: 256,
+          minHeight: 256,
+          maxWidth: 4096,
+          maxHeight: 4096,
           ready: () => {
             if (this.data) {
               this.cropper
