@@ -289,7 +289,7 @@
           this.data = cropper.getData();
           this.canvasData = cropper.getCanvasData();
           this.cropBoxData = cropper.getCropBoxData();
-          this.data = cropper.getData(); 
+          this.data = cropper.getData();
           this.$store.dispatch('editor/update', {
             cropped: true,
             cropping: false,
