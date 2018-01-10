@@ -41,8 +41,9 @@
       },
       loader() {
         const that = this;
+        that.applyOrientation(true);
         window.onresize = function () {
-          that.applyOrientation();
+          that.applyOrientation(false);
         };
         return this.$store.state.loader;
       },
@@ -206,12 +207,13 @@
       //   }
       // },
 
-      applyOrientation() {
-        if (window.innerHeight > window.innerWidth) {
+      applyOrientation(flag) {
+        if (!flag) {
           this.clear();
+        }
+        if (window.innerHeight > window.innerWidth) {
           this.orientation = 0;
         } else {
-          this.clear();
           this.orientation = 1;
         }
       },
