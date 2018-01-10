@@ -70,11 +70,11 @@
           //   cropper.zoom(-0.1);
           //   break;
           case 'rotate-left':
-            this.clear()
+            this.clear();
             cropper.rotate(-90);
             break;
           case 'rotate-right':
-            this.clear()
+            this.clear();
             cropper.rotate(90);
             break;
           case 'remove':
@@ -218,20 +218,20 @@
         }
 
         this.cropper = new Cropper(this.$refs.image, {
-          checkOrientation:true, 
+          checkOrientation: true,
           autoCrop: true,
           dragMode: false,
           aspectRatio: 1,
           movable: false,
-          scalable: false, 
-          zoomable: false, 
+          scalable: false,
+          zoomable: false,
           viewMode: 1,
           autoCropArea: 0.3,
           background: false,
-          checkCrossOrigin:true, 
+          checkCrossOrigin: true,
           imageSmoothingEnabled: false,
           imageSmoothingQuality: 'high',
-          center:true,
+          center: true,
           ready: () => {
             if (this.data) {
               this.cropper
