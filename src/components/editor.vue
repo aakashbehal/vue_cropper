@@ -14,9 +14,9 @@
       <!-- <button class="toolbar__button" data-action="flip-horizontal" title="Flip Horizontal (H)"><span class="fa fa-arrows-h"></span></button> -->
       <!-- <button class="toolbar__button" data-action="flip-vertical" title="Flip Vertical (V)"><span class="fa fa-arrows-v"></span></button> -->
     </div>
-    <div class="toolbar_remove" v-if="loader.loaded && !editor.cropping" @click="click">
+    <div class="toolbar_remove" v-if="!cropper" @click="click">
     <!--<button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>-->
-      <button type="button" class="toolbar__button" data-action="remove" title="Delete (Delete)" v-show="loader.loaded && !editor.cropping"><span class="fa fa-trash"></span></button>
+      <button type="button" class="toolbar__button" data-action="remove" title="Delete (Delete)"><span class="fa fa-trash"></span></button>
     </div>
   </div>
 </template>
@@ -278,9 +278,6 @@
       },
 
       crop() {
-        this.$store.dispatch('loader/update', {
-          url: '',
-        });
         const cropper = this.cropper;
         // const {  } = this.loader;
         const { type, url } = this.loader;
@@ -300,7 +297,10 @@
               fillColor: '#fff',
             }).toDataURL(type),
           });
-          this.stop();
+          // const that = this;
+          setTimeout(() => {
+            this.stop();
+          }, 300);
         }
       },
 
