@@ -40,13 +40,14 @@
         return this.$store.state.editor;
       },
       loader() {
-        const that = this;
-        that.applyOrientation(true);
-        window.onresize = function () {
-          that.applyOrientation(false);
+        window.onresize = () => {
+          this.applyOrientation(false);
         };
         return this.$store.state.loader;
       },
+    },
+    created() {
+      this.applyOrientation(true);
     },
 
     mounted() {
@@ -208,7 +209,7 @@
       // },
 
       applyOrientation(flag) {
-        if (!flag) {
+        if (flag) {
           this.clear();
         }
         if (window.innerHeight > window.innerWidth) {
