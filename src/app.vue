@@ -1,9 +1,9 @@
 <template>
   <div class="app">
-    <header class="header">
+    <!--<header class="header">-->
       <!-- <span class="title">Photo Editor</span> -->
-      <navbar @change="change"></navbar>
-    </header>
+      <!--<navbar @change="change"></navbar>-->
+    <!--</header>-->
     <main class="main">
       <editor ref="editor" v-if="$store.state.loader.loaded"></editor>
       <loader ref="loader" v-else></loader>
@@ -85,6 +85,6 @@
     left: 0;
     position: absolute;
     right: 0;
-    top: 48px;
+    top: 0px;
   }
 </style>

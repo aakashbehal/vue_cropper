@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <div class="canvas" @dblclick="dblclick">
+    <div class="canvas" @dblclick="dblclick"  v-bind:class="{ portrait: orientation === 1 }">
       <img ref="image" :alt="loader.name" :src="loader.url" @load="start">
     </div>
     <div class="toolbar" v-if="cropper" @click="click">
@@ -31,6 +31,7 @@
         canvasData: null,
         cropBoxData: null,
         data: null,
+        orientation: null,
       };
     },
 
@@ -38,8 +39,11 @@
       editor() {
         return this.$store.state.editor;
       },
-
       loader() {
+        const that = this;
+        window.onresize = function () {
+          that.applyOrientation();
+        };
         return this.$store.state.loader;
       },
     },
@@ -202,6 +206,16 @@
       //   }
       // },
 
+      applyOrientation() {
+        if (window.innerHeight > window.innerWidth) {
+          this.clear();
+          this.orientation = 0;
+        } else {
+          this.clear();
+          this.orientation = 1;
+        }
+      },
+
       dblclick(e) {
         if (e.target.className.indexOf('cropper-face') >= 0) {
           e.preventDefault();
@@ -209,10 +223,8 @@
           this.crop();
         }
       },
-
       start() {
         const editor = this.editor;
-
         if (editor.cropped) {
           return;
         }
@@ -226,11 +238,11 @@
           scalable: false,
           zoomable: false,
           viewMode: 1,
-          autoCropArea: 0.3,
+          autoCropArea: 0.6,
           background: false,
-          checkCrossOrigin: true,
-          imageSmoothingEnabled: false,
-          imageSmoothingQuality: 'high',
+          // checkCrossOrigin: true,
+          // imageSmoothingEnabled: false,
+          // imageSmoothingQuality: 'high',
           center: true,
           ready: () => {
             if (this.data) {
@@ -239,7 +251,6 @@
                 .setData(this.data)
                 .setCanvasData(this.canvasData)
                 .setCropBoxData(this.cropBoxData);
-
               this.data = null;
               this.canvasData = null;
               this.cropBoxData = null;
@@ -323,10 +334,17 @@
     height: 100%;
   }
 
+  .portrait{
+    height: 300px !important;
+    width: 300px !important;
+  }
+
   .canvas {
     align-items: center;
     display: flex;
     height: 360px;
+    width: 360px;
+    margin: 0 auto;
     justify-content: center;
 
     & > img {
