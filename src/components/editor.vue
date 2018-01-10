@@ -379,7 +379,6 @@
       cursor: pointer;
       display: block;
       float: left;
-      font-size: 50px;
       height: 60px;
       text-align: center;
       width: 70px;
@@ -416,7 +415,6 @@
       cursor: pointer;
       display: block;
       float: left;
-      font-size: 50px;
       height: 60px;
       text-align: center;
       width: 70px;
