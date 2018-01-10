@@ -14,7 +14,7 @@
       <!-- <button class="toolbar__button" data-action="flip-horizontal" title="Flip Horizontal (H)"><span class="fa fa-arrows-h"></span></button> -->
       <!-- <button class="toolbar__button" data-action="flip-vertical" title="Flip Vertical (V)"><span class="fa fa-arrows-v"></span></button> -->
     </div>
-    <div class="toolbar_remove" v-if="!cropper" @click="click">
+    <div class="toolbar_remove" v-if="loader.loaded && !editor.cropping" @click="click">
     <!--<button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>-->
       <button type="button" class="toolbar__button" data-action="remove" title="Delete (Delete)" v-show="loader.loaded && !editor.cropping"><span class="fa fa-trash"></span></button>
     </div>
@@ -232,10 +232,9 @@
         }
 
         this.cropper = new Cropper(this.$refs.image, {
-          checkOrientation: true,
           autoCrop: true,
           dragMode: false,
-          aspectRatio: 1,
+          aspectRatio: 0,
           movable: false,
           scalable: false,
           zoomable: false,
@@ -279,7 +278,11 @@
       },
 
       crop() {
+        this.$store.dispatch('loader/update', {
+          url: '',
+        });
         const cropper = this.cropper;
+        // const {  } = this.loader;
         const { type, url } = this.loader;
 
         if (this.editor.cropping) {
@@ -287,6 +290,7 @@
           this.canvasData = cropper.getCanvasData();
           this.cropBoxData = cropper.getCropBoxData();
           this.data = cropper.getData();
+          
           this.$store.dispatch('editor/update', {
             cropped: true,
             cropping: false,
