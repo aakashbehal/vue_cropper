@@ -5,7 +5,7 @@
     </div>
     <div class="toolbar" v-if="cropper" @click="click">
       <!-- <button class="toolbar__button" data-action="move" title="Move (M)"><span class="fa fa-arrows"></span></button> -->
-      <!--<button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>-->
+      <button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>
       <!-- <button class="toolbar__button" data-action="zoom-out" title="Zoom Out (O)"><span class="fa fa-search-minus"></span></button> -->
       <button class="toolbar__button" data-action="rotate-left" title="Rotate Left (L)"><span class="fa fa-rotate-left"></span></button>
       <button class="toolbar__button" data-action="crop-save" title="OK (Enter)"><span class="fa fa-check"></span></button>
@@ -70,9 +70,11 @@
           //   cropper.zoom(-0.1);
           //   break;
           case 'rotate-left':
+            this.clear()
             cropper.rotate(-90);
             break;
           case 'rotate-right':
+            this.clear()
             cropper.rotate(90);
             break;
           case 'remove':
@@ -216,19 +218,20 @@
         }
 
         this.cropper = new Cropper(this.$refs.image, {
+          checkOrientation:true, 
           autoCrop: true,
           dragMode: false,
+          aspectRatio: 1,
+          movable: false,
+          scalable: false, 
+          zoomable: false, 
           viewMode: 1,
           autoCropArea: 0.3,
           background: false,
+          checkCrossOrigin:true, 
           imageSmoothingEnabled: false,
           imageSmoothingQuality: 'high',
-          width: 160,
-          height: 90,
-          minWidth: 256,
-          minHeight: 256,
-          maxWidth: 4096,
-          maxHeight: 4096,
+          center:true,
           ready: () => {
             if (this.data) {
               this.cropper
@@ -323,7 +326,7 @@
   .canvas {
     align-items: center;
     display: flex;
-    height: 100%;
+    height: 360px;
     justify-content: center;
 
     & > img {
@@ -336,12 +339,15 @@
     background-color: rgba(0, 0, 0, .5);
     bottom: 16px;
     color: #fff;
-    height: 55px;
-    left: 46%;
-    margin-left: -64px;
-    position: absolute;
+    height: 60px;
+    /*left: 46%;*/
+    /*margin-left: -64px;*/
+    /*position: absolute;*/
     /*width: 256px;*/
-    z-index: 2015;
+    /*z-index: 2015;*/
+    width: 280px;
+    display: block;
+    margin: 0 auto;
     
     &__button {
       background-color: transparent;
@@ -351,7 +357,7 @@
       display: block;
       float: left;
       font-size: 50px;
-      height: 55px;
+      height: 60px;
       text-align: center;
       width: 70px;
 
@@ -370,12 +376,15 @@
     background-color: rgba(0, 0, 0, .5);
     bottom: 16px;
     color: #fff;
-    height: 55px;
-    left: 50%;
-    margin-left: -64px;
-    position: absolute;
+    height: 60px;
+    /*left: 50%;*/
+    /*margin-left: -64px;*/
+    /*position: absolute;*/
     /*width: 256px;*/
-    z-index: 2015;
+    /*z-index: 2015;*/
+    width: 70px;
+    display: block;
+    margin: 0 auto;
     
     &__button {
       background-color: transparent;
@@ -385,7 +394,7 @@
       display: block;
       float: left;
       font-size: 50px;
-      height: 55px;
+      height: 60px;
       text-align: center;
       width: 70px;
 
