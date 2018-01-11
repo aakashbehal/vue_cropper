@@ -3,7 +3,7 @@
     <div class="canvas" @dblclick="dblclick"  v-bind:class="{ portrait: orientation === 1 }">
       <img ref="image" :alt="loader.name" :src="loader.url" @load="start">
     </div>
-    <div class="toolbar" v-if="cropper" @click="click">
+    <div class="toolbar" v-if="editor.cropping" @click="click">
       <!-- <button class="toolbar__button" data-action="move" title="Move (M)"><span class="fa fa-arrows"></span></button> -->
       <button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>
       <!-- <button class="toolbar__button" data-action="zoom-out" title="Zoom Out (O)"><span class="fa fa-search-minus"></span></button> -->
@@ -14,7 +14,7 @@
       <!-- <button class="toolbar__button" data-action="flip-horizontal" title="Flip Horizontal (H)"><span class="fa fa-arrows-h"></span></button> -->
       <!-- <button class="toolbar__button" data-action="flip-vertical" title="Flip Vertical (V)"><span class="fa fa-arrows-v"></span></button> -->
     </div>
-    <div class="toolbar_remove" v-if="!cropper" @click="click">
+    <div class="toolbar_remove" v-if="editor.cropped" @click="click">
     <!--<button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>-->
       <button type="button" class="toolbar__button" data-action="remove" title="Delete (Delete)"><span class="fa fa-trash"></span></button>
     </div>
@@ -300,7 +300,7 @@
           // const that = this;
           setTimeout(() => {
             this.stop();
-          }, 300);
+          });
         }
       },
 

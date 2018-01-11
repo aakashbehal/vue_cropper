@@ -3,7 +3,7 @@
   <div class="loader" @change="change">
     <p>
       <label class="browse">browse...
-        <input class="sr-only" id="file" type="file"  accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff" capture>
+        <input class="sr-only" id="file" type="file"  accept=".jpg,.jpeg,.png" capture="camera">
       </label>
     </p>
   </div>
