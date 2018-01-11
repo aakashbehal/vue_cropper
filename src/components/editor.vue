@@ -242,9 +242,8 @@
           viewMode: 1,
           autoCropArea: 0.6,
           background: false,
-          // checkCrossOrigin: true,
-          // imageSmoothingEnabled: false,
-          // imageSmoothingQuality: 'high',
+          minCropBoxWidth: 100,
+          minCropBoxHeight: 100,
           center: true,
           ready: () => {
             if (this.data) {
