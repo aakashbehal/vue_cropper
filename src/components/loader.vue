@@ -29,7 +29,6 @@
                 type: file.type,
                 url: reader.result,
               });
-
               resolve();
             };
             reader.onerror = reject;
@@ -44,7 +43,6 @@
       change({ target }) {
         // const url = new URL(window.location.href);
         // const c = url.searchParams.get('role');
-
         this.read(target.files).then(() => {
           target.value = '';
         }).catch((e) => {
