@@ -293,9 +293,7 @@
           });
           this.$store.dispatch('loader/update', {
             previousUrl: url,
-            url: cropper.getCroppedCanvas(type === 'image/png' ? null : {
-              fillColor: '#fff',
-            }).toDataURL(type),
+            url: cropper.getCroppedCanvas().toDataURL(type),
           });
           // const that = this;
           setTimeout(() => {
