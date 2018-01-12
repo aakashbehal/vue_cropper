@@ -1,18 +1,36 @@
 <template>
   <!-- <div class="loader" @change="change" @dragover="dragover" @drop="drop"> -->
   <div class="loader" @change="change">
-    <p>
-      <label class="browse">browse...
+    <p v-show="!loadedStarted && urlCame == ''">
+      <label class="browse"><i class="fa fa-upload" style="font-size:42px; color:white"></i>
         <input class="sr-only" id="file" type="file" accept="image/*">
       </label>
     </p>
+    <div style="text-align: center" v-show="loadedStarted && urlCame == ''">
+      <p class="loadgingIn">
+        <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
+
+    data() {
+      return {
+        loadedStarted: false,
+        urlCame: '',
+      };
+    },
+    computed: {
+      loader() {
+        return this.$store.state.loader;
+      },
+    },
     methods: {
       read(files) {
+        this.loadedStarted = true;
         return new Promise((resolve, reject) => {
           if (!files || files.length === 0) {
             resolve();
@@ -102,5 +120,13 @@
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+  }
+  .loadgingIn{
+    position: absolute;
+    top: 110px;
+    z-index: 9999999999999;
+    right: 0;
+    width: 100%;
+    height: 20px;
   }
 </style>

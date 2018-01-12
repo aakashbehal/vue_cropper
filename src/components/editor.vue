@@ -2,11 +2,14 @@
   <div class="editor">
     <div class="canvas" @dblclick="dblclick"  v-bind:class="{ portrait: orientation === 1 }">
       <img ref="image" :alt="loader.name" :src="loader.url" @load="start">
-      <div style="text-align: center"><p class="loadgingIn" v-if="loadingCheck && !editor.cropped">Loading...</p></div>
+      <div style="text-align: center"><p class="loadgingIn" v-show="loadingCheck && !editor.cropped"><i class="fa fa-circle-o-notch fa-spin" style="font-size:42px"></i></p></div>
+      <div style="text-align: center"><p class="loadgingIn" v-show="loadingCheckInner && !editor.cropped"><i class="fa fa-circle-o-notch fa-spin" style="font-size:42px"></i></p></div>
     </div>
     
     <!--<div style="text-align: center; color: white; position: absolute" v-if="loadingCheck && !editor.cropped">Loading...</div>-->
-    <div class="toolbar" v-if="cropper" @click="click">
+    <div class="toolbar" v-show="cropper" @click="click">
+      
+      <!--<div style="text-align: center"><p class="loadgingIn" v-if="loadingCheckInner">Loading...</p></div>-->
       <!-- <button class="toolbar__button" data-action="move" title="Move (M)"><span class="fa fa-arrows"></span></button> -->
       <button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>
       <!-- <button class="toolbar__button" data-action="zoom-out" title="Zoom Out (O)"><span class="fa fa-search-minus"></span></button> -->
@@ -17,7 +20,7 @@
       <!-- <button class="toolbar__button" data-action="flip-horizontal" title="Flip Horizontal (H)"><span class="fa fa-arrows-h"></span></button> -->
       <!-- <button class="toolbar__button" data-action="flip-vertical" title="Flip Vertical (V)"><span class="fa fa-arrows-v"></span></button> -->
     </div>
-    <div class="toolbar_remove" v-if="!cropper" @click="click">
+    <div class="toolbar_remove" v-show="!cropper" @click="click">
     <!--<button type="button" class="toolbar__button" data-action="restore" title="Undo (Ctrl + Z)" v-show="editor.cropped"><span class="fa fa-undo"></span></button>-->
       <button type="button" class="toolbar__button" data-action="remove" v-show="editor.cropped" title="Delete (Delete)"><span class="fa fa-trash"></span></button>
     </div>
@@ -37,6 +40,7 @@
         data: null,
         orientation: null,
         loadingCheck: true,
+        loadingCheckInner: false,
       };
     },
 
@@ -92,7 +96,10 @@
             this.reset();
             break;
           case 'crop-save':
-            this.crop();
+            this.loadingCheckInner = true;
+            setTimeout(() => {
+              this.crop();
+            }, 100);
             break;
           case 'restore':
             this.restore();
@@ -275,6 +282,7 @@
       },
 
       stop() {
+        this.loadingCheckInner = true;
         if (this.cropper) {
           this.cropper.destroy();
           this.cropper = null;
@@ -288,7 +296,6 @@
         const cropper = this.cropper;
         // const {  } = this.loader;
         const { type, url } = this.loader;
-
         if (this.editor.cropping) {
           this.data = cropper.getData();
           this.canvasData = cropper.getCanvasData();
@@ -377,7 +384,7 @@
     /*z-index: 2015;*/
     width: 280px;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0;
     
     &__button {
       background-color: transparent;
@@ -413,7 +420,7 @@
     /*z-index: 2015;*/
     width: 70px;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0;
     
     &__button {
       background-color: transparent;
@@ -447,11 +454,10 @@
   }
   .loadgingIn{
     position: absolute;
-    top: 0;
+    top: 110px;
     color: white;
     z-index: 9999999999999;
     right: 0;
-    background: #4e4b4b;
     width: 100%;
     height: 20px;
   }
