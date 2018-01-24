@@ -1,14 +1,13 @@
 <template>
   <!-- <div class="loader" @change="change" @dragover="dragover" @drop="drop"> -->
   <div class="loader" @change="change" style="text-align: center; color: white">
-    <!--<p v-show="!loadedStarted && urlCame == ''">
-      <label class="browse"><i class="fa fa-upload" style="font-size:42px; color:white"></i>
+    <p v-show="!loadedStarted && urlCame == ''">
+      <label class="browse">
+        <i class="fa fa-camera-retro" style="font-size:42px; color:white"></i> 
         <input class="sr-only" id="file" type="file" accept="image/*">
       </label>
-    </p>-->
-    <h1>Love You</h1>
-    <h3>Tanvi and Aakash For Ever</h3>
-    <i class="fa fa-heart"></i>
+    </p>
+    
     <div style="text-align: center" v-show="loadedStarted && urlCame == ''">
       <p class="loadgingIn">
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
