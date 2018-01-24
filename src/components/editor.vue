@@ -271,10 +271,6 @@
               this.cropBoxData = null;
             }
           },
-          cropstart: (event) => {
-            console.log(event.detail)
-            // event.detail.action:
-          },
           crop: ({ detail }) => {
             if (detail.width > 0 && detail.height > 0 && !editor.cropping) {
               this.$store.dispatch('editor/update', {
