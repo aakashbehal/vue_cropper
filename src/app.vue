@@ -87,4 +87,8 @@
     right: 0;
     top: 0px;
   }
+  .cropper-point{
+    width: 20px !important;
+    height: 20px !important
+  }
 </style>

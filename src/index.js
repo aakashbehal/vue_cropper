@@ -1,6 +1,6 @@
 import 'normalize.css';
 import 'font-awesome/css/font-awesome.min.css';
-import 'cropperjs/dist/cropper.css';
+import './cropper.css';
 import 'babel-polyfill';
 
 import Vue from 'vue';
