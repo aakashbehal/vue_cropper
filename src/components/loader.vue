@@ -32,7 +32,7 @@
     },
     methods: {
       read(files) {
-        console.log('loading started')
+        console.log('loading started');
         this.loadedStarted = true;
         return new Promise((resolve, reject) => {
           if (!files || files.length === 0) {
