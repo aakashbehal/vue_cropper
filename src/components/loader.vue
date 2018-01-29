@@ -7,7 +7,7 @@
         <input class="sr-only" id="file" type="file" accept="image/*">
       </label>
     </p>
-    
+
     <div style="text-align: center" v-show="loadedStarted">
       <p class="loadgingIn">
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
@@ -64,14 +64,15 @@
         // const c = url.searchParams.get('role');
         console.log('started this');
         this.loadedStarted = true;
-        this.read(target.files).then(() => {
-          target.value = '';
-        }).catch((e) => {
-          target.value = '';
-          this.alert(e);
-        });
+        setTimeout(function () {
+          this.read(target.files).then(() => {
+            target.value = '';
+          }).catch((e) => {
+            target.value = '';
+            this.alert(e);
+          });
+        }, 10);
       },
-
       // dragover(e) {
       //   e.preventDefault();
       // },
@@ -86,6 +87,7 @@
       },
     },
   };
+
 </script>
 
 <style scoped>
@@ -94,7 +96,6 @@
     height: 100%;
     overflow: hidden;
     width: 100%;
-
     & > p {
       color: #999;
       display: table-cell;
@@ -102,18 +103,17 @@
       vertical-align: middle;
     }
   }
-
+  
   .browse {
     color: #0074d9;
     cursor: pointer;
     margin-left: 4px;
-
     &:hover {
       color: color(#0074d9 lightness(50%));
       text-decoration: underline;
     }
   }
-
+  
   .sr-only {
     position: absolute;
     width: 1px;
@@ -124,7 +124,8 @@
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-  .loadgingIn{
+  
+  .loadgingIn {
     position: absolute;
     top: 110px;
     z-index: 9999999999999;
