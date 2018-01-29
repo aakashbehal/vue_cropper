@@ -62,6 +62,7 @@
       change({ target }) {
         // const url = new URL(window.location.href);
         // const c = url.searchParams.get('role');
+        console.log('started this');
         this.loadedStarted = true;
         this.read(target.files).then(() => {
           target.value = '';
