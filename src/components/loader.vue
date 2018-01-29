@@ -1,15 +1,15 @@
 <template>
   <!-- <div class="loader" @change="change" @dragover="dragover" @drop="drop"> -->
   <div class="loader" @change="change" style="text-align: center; color: white">
-    {{loadedStarted}}
-    <p v-show="!loadedStarted && urlCame == ''">
+    {{loadedStarted}} 
+    <p v-show="!loadedStarted">
       <label class="browse">
         <i class="fa fa-camera-retro" style="font-size:42px; color:white"></i> 
         <input class="sr-only" id="file" type="file" accept="image/*">
       </label>
     </p>
     
-    <div style="text-align: center" v-show="loadedStarted && urlCame == ''">
+    <div style="text-align: center" v-show="loadedStarted">
       <p class="loadgingIn">
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
       </p>
@@ -23,7 +23,6 @@
     data() {
       return {
         loadedStarted: false,
-        urlCame: '',
       };
     },
     computed: {
@@ -33,6 +32,7 @@
     },
     methods: {
       read(files) {
+        console.log('loading started')
         this.loadedStarted = true;
         return new Promise((resolve, reject) => {
           if (!files || files.length === 0) {
