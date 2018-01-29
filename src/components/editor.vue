@@ -11,7 +11,7 @@
       
       <!--<div style="text-align: center"><p class="loadgingIn" v-if="loadingCheckInner">Loading...</p></div>-->
       <!-- <button class="toolbar__button" data-action="move" title="Move (M)"><span class="fa fa-arrows"></span></button> -->
-      <button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>
+      <!--<button class="toolbar__button" data-action="crop" title="Crop (C)"><span class="fa fa-crop"></span></button>-->
       <!-- <button class="toolbar__button" data-action="zoom-out" title="Zoom Out (O)"><span class="fa fa-search-minus"></span></button> -->
       <button class="toolbar__button" data-action="rotate-left" title="Rotate Left (L)"><span class="fa fa-rotate-left"></span></button>
       <button class="toolbar__button" data-action="crop-save" title="OK (Enter)"><span class="fa fa-check"></span></button>
@@ -75,7 +75,7 @@
         switch (action) {
           case 'move':
           case 'crop':
-            cropper.setDragMode(action);
+            cropper.setDefaults({ autoCrop: true });
             break;
           // case 'zoom-in':
           //   cropper.zoom(0.1);
@@ -87,10 +87,13 @@
           case 'rotate-left':
             this.clear();
             cropper.rotate(-90);
+            cropper.crop();
+            // cropper.setDragMode('crop');
             break;
           case 'rotate-right':
             this.clear();
             cropper.rotate(90);
+            cropper.crop();
             break;
           case 'remove':
             this.reset();
@@ -382,7 +385,7 @@
     /*position: absolute;*/
     /*width: 256px;*/
     /*z-index: 2015;*/
-    width: 280px;
+    width: 210px;
     display: block;
     margin: 10px auto 0;
     
