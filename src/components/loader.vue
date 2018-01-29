@@ -1,14 +1,14 @@
 <template>
   <!-- <div class="loader" @change="change" @dragover="dragover" @drop="drop"> -->
   <div class="loader" @change="change" style="text-align: center; color: white">
-    {{loadedStarted}}
+    {{loadedStarted}} 
     <p v-show="!loadedStarted">
       <label class="browse">
         <i class="fa fa-camera-retro" style="font-size:42px; color:white"></i> 
         <input class="sr-only" id="file" type="file" accept="image/*">
       </label>
     </p>
-
+    
     <div style="text-align: center" v-show="loadedStarted">
       <p class="loadgingIn">
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
@@ -32,40 +32,38 @@
     },
     methods: {
       read(files) {
-        console.log('loading started');
-        this.loadedStarted = true;
-        setTimeout(function () {
-          return new Promise((resolve, reject) => {
-            if (!files || files.length === 0) {
-              resolve();
-              return;
-            }
+        return new Promise((resolve, reject) => {
+          if (!files || files.length === 0) {
+            resolve();
+            return;
+          }
 
-            const file = files[0];
-            if (/^image\/\w+$/.test(file.type)) {
-              const reader = new FileReader();
-              reader.onload = () => {
-                this.$store.dispatch('loader/update', {
-                  loaded: true,
-                  name: file.name,
-                  type: file.type,
-                  url: reader.result,
-                });
-                resolve();
-              };
-              reader.onerror = reject;
-              reader.onabort = reject;
-              reader.readAsDataURL(file);
-            } else {
-              reject('Please choose an image file.');
-            }
-          });
-        }, 0);
+          const file = files[0];
+          if (/^image\/\w+$/.test(file.type)) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.$store.dispatch('loader/update', {
+                loaded: true,
+                name: file.name,
+                type: file.type,
+                url: reader.result,
+              });
+              resolve();
+            };
+            reader.onerror = reject;
+            reader.onabort = reject;
+            reader.readAsDataURL(file);
+          } else {
+            this.loadedStarted = false;
+            reject('Please choose an image file.');
+          }
+        });
       },
 
       change({ target }) {
         // const url = new URL(window.location.href);
         // const c = url.searchParams.get('role');
+        this.loadedStarted = true;
         this.read(target.files).then(() => {
           target.value = '';
         }).catch((e) => {
@@ -88,7 +86,6 @@
       },
     },
   };
-
 </script>
 
 <style scoped>
@@ -97,6 +94,7 @@
     height: 100%;
     overflow: hidden;
     width: 100%;
+
     & > p {
       color: #999;
       display: table-cell;
@@ -104,17 +102,18 @@
       vertical-align: middle;
     }
   }
-  
+
   .browse {
     color: #0074d9;
     cursor: pointer;
     margin-left: 4px;
+
     &:hover {
       color: color(#0074d9 lightness(50%));
       text-decoration: underline;
     }
   }
-  
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -125,8 +124,7 @@
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-  
-  .loadgingIn {
+  .loadgingIn{
     position: absolute;
     top: 110px;
     z-index: 9999999999999;
