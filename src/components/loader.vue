@@ -1,7 +1,6 @@
 <template>
   <!-- <div class="loader" @change="change" @dragover="dragover" @drop="drop"> -->
   <div class="loader" @change="change" style="text-align: center; color: white">
-    {{loadedStarted}} 
     <p v-show="!loadedStarted">
       <label class="browse">
         <i class="fa fa-camera-retro" style="font-size:42px; color:white"></i> 
