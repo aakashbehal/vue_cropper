@@ -62,7 +62,6 @@
       change({ target }) {
         // const url = new URL(window.location.href);
         // const c = url.searchParams.get('role');
-        console.log('started this');
         this.loadedStarted = true;
         setTimeout(() => {
           this.read(target.files).then(() => {

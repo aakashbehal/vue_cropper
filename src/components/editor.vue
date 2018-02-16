@@ -60,11 +60,9 @@
     },
 
     mounted() {
-      // window.addEventListener('keydown', (this.onKeydown = this.keydown.bind(this)));
     },
 
     beforeDestroy() {
-      // window.removeEventListener('keydown', this.onKeydown);
       this.stop();
     },
 
