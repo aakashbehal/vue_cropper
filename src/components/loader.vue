@@ -25,7 +25,7 @@
         loadedStarted: false,
         currentLocation: `
          Follow this link to get match details
-        "whatsapp://send?text="+window.location.href
+        "whatsapp://send?text="+${window.location.href}
         `,
       };
     },
