@@ -13,7 +13,7 @@
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
       </p>
     </div>
-    <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+    <a v-bind:href="currentLocation" data-action="share/whatsapp/share">Share via Whatsapp</a>
   </div>
 </template>
 
@@ -23,6 +23,10 @@
     data() {
       return {
         loadedStarted: false,
+        currentLocation: `
+         Follow this link to get match details
+        "whatsapp://send?text="+window.location.href
+        `,
       };
     },
     computed: {
