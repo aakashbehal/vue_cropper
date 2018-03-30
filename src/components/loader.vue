@@ -13,6 +13,7 @@
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
       </p>
     </div>
+    <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
   </div>
 </template>
 
