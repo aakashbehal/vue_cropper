@@ -314,7 +314,7 @@
           setTimeout(() => {
             this.stop();
           });
-          window.parent.postMessage("msg", '*');
+          window.parent.postMessage('msg', '*');
         }
       },
 
