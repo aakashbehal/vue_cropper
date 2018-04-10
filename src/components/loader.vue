@@ -13,7 +13,6 @@
         <i class="fa fa-circle-o-notch fa-spin" style="font-size:42px; color:white"></i>
       </p>
     </div>
-    <a href="whatsapp://send" data-text="Take a look at this awesome website:" data-href="" class="wa_btn wa_btn_s">Share</a>
   </div>
 </template>
 
