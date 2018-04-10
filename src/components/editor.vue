@@ -314,6 +314,7 @@
           setTimeout(() => {
             this.stop();
           });
+          window.parent.postMessage(msg, '*');
         }
       },
 
