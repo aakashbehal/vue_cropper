@@ -311,15 +311,17 @@
             url: cropper.getCroppedCanvas().toDataURL(type),
           });
           // const that = this;
+          
           setTimeout(() => {
             this.stop();
           });
           window.parent.postMessage(url, '*');
-          this.clear();
+          this.reset();
         }
       },
 
       clear() {
+        console.log('called :::')
         if (this.editor.cropping) {
           this.cropper.clear();
           this.$store.dispatch('editor/update', {
