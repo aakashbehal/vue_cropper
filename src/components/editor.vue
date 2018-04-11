@@ -315,6 +315,7 @@
             this.stop();
           });
           window.parent.postMessage(url, '*');
+           this.clear()
         }
       },
 
