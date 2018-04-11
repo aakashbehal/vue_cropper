@@ -311,7 +311,6 @@
             url: cropper.getCroppedCanvas().toDataURL(type),
           });
           // const that = this;
-          
           setTimeout(() => {
             this.stop();
           });
@@ -321,7 +320,6 @@
       },
 
       clear() {
-        console.log('called :::')
         if (this.editor.cropping) {
           this.cropper.clear();
           this.$store.dispatch('editor/update', {
