@@ -314,7 +314,9 @@
           setTimeout(() => {
             this.stop();
           });
-          window.parent.postMessage(url, '*');
+          // console.log(cropper.getCroppedCanvas().toDataURL(type))
+          // console.log("::::::::", url)
+          window.parent.postMessage(cropper.getCroppedCanvas().toDataURL(type), '*');
           this.reset();
         }
       },
