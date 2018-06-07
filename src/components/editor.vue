@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Cropper from "cropperjs";
+import Cropper from 'cropperjs';
 
 export default {
   data() {
@@ -41,7 +41,7 @@ export default {
       data: null,
       orientation: null,
       loadingCheck: true,
-      loadingCheckInner: false
+      loadingCheckInner: false,
     };
   },
 
@@ -54,7 +54,7 @@ export default {
         this.applyOrientation(false);
       };
       return this.$store.state.loader;
-    }
+    },
   },
   created() {
     this.applyOrientation(true);
@@ -71,8 +71,8 @@ export default {
       const cropper = this.cropper;
       const action = target.dataset.action || target.parentNode.dataset.action;
       switch (action) {
-        case "move":
-        case "crop":
+        case 'move':
+        case 'crop':
           cropper.setDefaults({ autoCrop: true });
           break;
         // case 'zoom-in':
@@ -82,27 +82,27 @@ export default {
         // case 'zoom-out':
         //   cropper.zoom(-0.1);
         //   break;
-        case "rotate-left":
+        case 'rotate-left':
           this.clear();
           cropper.rotate(-90);
           cropper.crop();
           // cropper.setDragMode('crop');
           break;
-        case "rotate-right":
+        case 'rotate-right':
           this.clear();
           cropper.rotate(90);
           cropper.crop();
           break;
-        case "remove":
+        case 'remove':
           this.reset();
           break;
-        case "crop-save":
+        case 'crop-save':
           this.loadingCheckInner = true;
           setTimeout(() => {
             this.crop();
           }, 100);
           break;
-        case "restore":
+        case 'restore':
           this.restore();
           break;
         // case 'flip-horizontal':
@@ -233,7 +233,7 @@ export default {
     },
 
     dblclick(e) {
-      if (e.target.className.indexOf("cropper-face") >= 0) {
+      if (e.target.className.indexOf('cropper-face') >= 0) {
         e.preventDefault();
         e.stopPropagation();
         this.crop();
@@ -274,11 +274,11 @@ export default {
         },
         crop: ({ detail }) => {
           if (detail.width > 0 && detail.height > 0 && !editor.cropping) {
-            this.$store.dispatch("editor/update", {
-              cropping: true
+            this.$store.dispatch('editor/update', {
+              cropping: true,
             });
           }
-        }
+        },
       });
     },
 
@@ -287,8 +287,8 @@ export default {
       if (this.cropper) {
         this.cropper.destroy();
         this.cropper = null;
-        this.$store.dispatch("editor/update", {
-          cropping: false
+        this.$store.dispatch('editor/update', {
+          cropping: false,
         });
       }
     },
@@ -302,13 +302,13 @@ export default {
         this.canvasData = cropper.getCanvasData();
         this.cropBoxData = cropper.getCropBoxData();
         this.data = cropper.getData();
-        this.$store.dispatch("editor/update", {
+        this.$store.dispatch('editor/update', {
           cropped: true,
-          cropping: false
+          cropping: false,
         });
-        this.$store.dispatch("loader/update", {
+        this.$store.dispatch('loader/update', {
           previousUrl: url,
-          url: cropper.getCroppedCanvas().toDataURL(type)
+          url: cropper.getCroppedCanvas().toDataURL(type),
         });
         // const that = this;
         setTimeout(() => {
@@ -318,7 +318,7 @@ export default {
         // console.log("::::::::", url)
         window.parent.postMessage(
           cropper.getCroppedCanvas().toDataURL(type),
-          "*"
+          '*',
         );
         this.reset();
       }
@@ -327,30 +327,30 @@ export default {
     clear() {
       if (this.editor.cropping) {
         this.cropper.clear();
-        this.$store.dispatch("editor/update", {
-          cropping: false
+        this.$store.dispatch('editor/update', {
+          cropping: false,
         });
       }
     },
 
     restore() {
       if (this.editor.cropped) {
-        this.$store.dispatch("editor/update", {
-          cropped: false
+        this.$store.dispatch('editor/update', {
+          cropped: false,
         });
-        this.$store.dispatch("loader/update", {
-          previousUrl: "",
-          url: this.loader.previousUrl
+        this.$store.dispatch('loader/update', {
+          previousUrl: '',
+          url: this.loader.previousUrl,
         });
       }
     },
 
     reset() {
       this.stop();
-      this.$store.dispatch("editor/remove");
-      this.$store.dispatch("loader/remove");
-    }
-  }
+      this.$store.dispatch('editor/remove');
+      this.$store.dispatch('loader/remove');
+    },
+  },
 };
 </script>
 
