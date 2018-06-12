@@ -369,8 +369,8 @@ export default {
   position: relative;
   align-items: center;
   display: flex;
-  height: 360px;
-  width: 360px;
+  height: 300px;
+  width: 300px;
   margin: 0 auto;
   justify-content: center;
 
